@@ -63,7 +63,7 @@ export default function Login(props) {
       setError("");
       setLoading(true);
       const user = await signInWithEmailAndPassword(auth, email, password);
-      window.location.href = "/product";
+      props.setuser(user)
     } catch {
       setError("Failed to create an account");
     }

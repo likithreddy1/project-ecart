@@ -18,8 +18,10 @@ export default function App() {
   const [cart, setcart] = useState({});
   const [order, setOrder] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
+  const [user, setUser] = useState();
   //handles logs
   //fetch data
+  console.log(user);
   const fetchdata = async () => {
     const { data } = await commerce.products.list();
     setProducts(data);
@@ -74,37 +76,47 @@ export default function App() {
   };
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-       <Route path='/' element={<HomeApp/>}/>
-          <Route
-            path="/product"
-            element={<Products products={products} addToCart={handleCart}  totalitems={cart.total_items}/>}
-          />
-          <Route
-            path="/cart"
-            element={
-              <Cart
-                cart1={cart}
-                handlequantity={handlequantity}
-                removecart={removecart}
-                emptycart={emptycart}
-              />
-            }
-          />
-          <Route
-            path="/checkout"
-            element={
-              <Checkout
-                cart={cart}
-                order={order}
-                handleCaptureCheckout={handleCaptureCheckout}
-                error={errorMessage}
-              />
-            }
-          />
-        </Routes>
-      </BrowserRouter>
+      {user ?(
+        <BrowserRouter>
+         <Navbar1 totalitems={cart.total_items} setuser={setUser}/>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Products
+                  products={products}
+                  addToCart={handleCart}
+                  setUser={setUser}
+                />
+              }
+            />
+            <Route
+              path="/cart"
+              element={
+                <Cart
+                  cart1={cart}
+                  handlequantity={handlequantity}
+                  removecart={removecart}
+                  emptycart={emptycart}
+                />
+              }
+            />
+            <Route
+              path="/checkout"
+              element={
+                <Checkout
+                  cart={cart}
+                  order={order}
+                  handleCaptureCheckout={handleCaptureCheckout}
+                  error={errorMessage}
+                />
+              }
+            />
+          </Routes>
+        </BrowserRouter>
+      ):(
+        <HomeApp setUser={setUser} />
+      )}
     </>
   );
 }

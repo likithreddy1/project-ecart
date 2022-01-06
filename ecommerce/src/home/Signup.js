@@ -52,7 +52,7 @@ const [email,setRegisterEmail]=useState('');
 const [password,setRegisterPassword]=useState('');
 const [confirmPassword,setCofirmRegisterPassword]=useState('');
 
-const [user, setUser] = useState({});
+const [user, setUser] = useState();
 
 onAuthStateChanged(auth, (currentUser) => {
   setUser(currentUser);
@@ -71,7 +71,8 @@ async function handleSubmit(e) {
      email,
      password
    )
-   window.location.href ='/product'
+   props.setuser(user)
+   setUser(user)
   } catch {
     setError("Failed to create an account")
   }

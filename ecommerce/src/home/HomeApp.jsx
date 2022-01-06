@@ -4,7 +4,7 @@ import Navbar from './Navbar';
 import Home from './Home';
 import Login from './Login';
 import Signup from './Signup';
-export default function HomeApp({user}) {
+export default function HomeApp(props) {
     const [log, setlog] = useState(false);
     function hangleLog() {
         setlog((prev) => !prev);
@@ -21,7 +21,7 @@ export default function HomeApp({user}) {
             <Home />
           </Grid>
           <Grid item sm={6}>
-          {log?<Login user={user} changelog={setlog}/>:<Signup  user={user} changelog={setlog}/>} 
+          {log?<Login setuser={props.setUser} changelog={setlog}/>:<Signup  setuser={props.setUser} changelog={setlog}/>} 
           </Grid>
         </Grid>
         </>

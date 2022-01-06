@@ -80,7 +80,6 @@ function Checkout({ cart, order, error, handleCaptureCheckout }) {
 
   return (
     <>
-     <Navbar1 totalitems={cart.total_items} />
       <div className={classes.toolbar} />
       <main className={classes.layout}>
         <Paper className={classes.paper}>

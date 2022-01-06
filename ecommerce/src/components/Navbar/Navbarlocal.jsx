@@ -9,18 +9,19 @@ import {
   signOut,
 } from "firebase/auth";
 import { auth } from "../../firebase";
-const Navbar = ({totalitems}) => {
+const Navbar = ({totalitems,setuser}) => {
 
   const logoutUser = () => {
     signOut(auth);
-    window.location.href='/'
+    setuser();
+    
   };
     const classes=useStyles()
     return (
         <AppBar position='fixed' className={classes.appbar} style={{backgroundColor:'#1B224A'}}>
             <Toolbar>
             <img src={logo} alt='commerce.js'height="35px"  />
-                <Typography component={Link} to='/product' variant='h6' className={classes.title}>
+                <Typography component={Link} to='/' variant='h6' className={classes.title}>
                    E-CART
                 </Typography>
                 <div className={classes.grow}/>
